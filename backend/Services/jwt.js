@@ -1,0 +1,19 @@
+const jwt = require("jsonwebtoken");
+
+function setUser() {
+  return jwt.sign(
+    { _id: user._id, email: user.email },
+    process.env.JWT_SECRET,
+    { expiresIn: "1h" },
+  );
+}
+
+function getUser(token) {
+  if (!token) {
+    return null;
+  }
+
+  return jwt.verify(token, process.env.JWT_SECRET);
+}
+
+module.exports = { setUser, getUser };

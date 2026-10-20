@@ -3,7 +3,7 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 const Footer = () => {
     useEffect(()=>{
-        Aos.init({duration: 400});
+        Aos.init({duration: 400, once: true});
     },[]);
   return (
     <footer className="bg-[#f8f9fa] text-black border-t border-gray-200" data-aos="fade-up">
