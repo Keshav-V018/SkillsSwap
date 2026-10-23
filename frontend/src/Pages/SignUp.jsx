@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 import Signupleft from "../components/Signupleft";
 import Signuptoggle from "../components/Signuptoggle";
 import Signform from "../components/Signform";
 
 const SignUp = () => {
+  const [role,setRole] = useState("learner");
   return (
     <div className="flex ">
       <Signupleft />
@@ -13,8 +14,8 @@ const SignUp = () => {
             <h1 className="py-1 text-2xl">Create your account</h1>
             <p className="text-md">Start your learning journey today.</p>
           </div>
-          <Signuptoggle />
-          <Signform />
+          <Signuptoggle role={role} setRole={setRole} />
+          <Signform role={role} />
           <div className="text-center">
             <p>
               Already have an account?

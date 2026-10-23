@@ -1,4 +1,5 @@
 const express = require("express");
+const {requireAuth} = require("../middleware/authenticate.js");
 const {
   handleSignup,
   handleLogin,
@@ -7,6 +8,6 @@ const {
 const route = express.Router();
 
 route.post("/signup", handleSignup);
-route.post("/login", handleLogin);
+route.post("/login",handleLogin);
 
 module.exports = route;

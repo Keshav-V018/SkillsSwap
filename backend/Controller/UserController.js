@@ -1,6 +1,6 @@
 const User = require("../models/User.js");
 const bcrypt = require("bcrypt");
-const setUser = require("../Services/jwt.js");
+const {setUser} = require("../Services/jwt.js");
 
 async function handleSignup(req, res) {
   try {
@@ -97,8 +97,9 @@ async function handleLogin(req, res) {
         .status(401)
         .json({ success: false, message: "Password is incorrect!" });
     }
-    user.emailVerified = true;
-    const token = setToken(user);
+    const token = setUser(user);
+    console.log(token);
+    res.cookie("Token",token);
 
     return res.json({
       success: true,
@@ -111,6 +112,7 @@ async function handleLogin(req, res) {
         role: user.role,
         primarySkillArea: user.primarySkillArea,
         emailVerified: user.emailVerified,
+        token: token,
       },
     });
   } catch (error) {
